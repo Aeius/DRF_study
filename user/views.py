@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import permissions
 from django.contrib.auth import login, authenticate, logout
-from user.models import User as UserModel
+from user.models import User
 
 # Create your views here.
 
