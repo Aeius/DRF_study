@@ -1,2 +1,6 @@
 venv/
 user/migrations/
+blog/__pycache__/
+blog/migrations/
+DRF_study/__pycache__/
+user/__pycache__/
