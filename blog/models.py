@@ -17,8 +17,12 @@ class Article(models.Model):
     title = models.CharField("제목", max_length=50)
     category = models.ManyToManyField(Category, verbose_name="카테고리")
     content = models.TextField("글내용")
+    def __str__(self):
+        return self.title
 
 class Comment(models.Model):
     author = models.ForeignKey(User, verbose_name="작성자", on_delete=models.CASCADE)
     article = models.ForeignKey(Article, verbose_name="게시글", on_delete=models.CASCADE)
     comment = models.TextField("댓글내용")
+    def __str__(self):
+        return (f"{self.author} / {self.article} / {self.comment}")

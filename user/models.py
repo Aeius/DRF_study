@@ -66,3 +66,6 @@ class UserProfile(models.Model):
     discription = models.TextField("자기소개", null=True, blank=True)
     hobby = models.ManyToManyField(Hobbies, verbose_name="취미")
     birthday = models.DateField("생일")
+    def __str__(self):
+        return self.user
+
