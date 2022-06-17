@@ -4,6 +4,6 @@ from django.urls import path, include
 from blog import views
 
 urlpatterns = [
-    # user/
-    # path('', views.ArtivleView.as_view()),
+    # blog/
+    path('', views.ArticleView.as_view()),
 ]
