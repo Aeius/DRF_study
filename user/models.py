@@ -1,3 +1,4 @@
+from re import T
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -55,8 +56,13 @@ class User(AbstractBaseUser):
     def is_staff(self): 
         return self.is_admin
 
+class Hobbies(models.Model):
+    name = models.CharField("취미", max_length=20)
+    def __str__(self):
+        return self.name
+
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    discription = models.TextField()
-    hobby = models.CharField(max_length=20)
-    birthday = models.DateField()
+    user = models.OneToOneField(User, verbose_name="유저",on_delete=models.CASCADE)
+    discription = models.TextField("자기소개", null=True, blank=True)
+    hobby = models.ManyToManyField(Hobbies, verbose_name="취미")
+    birthday = models.DateField("생일")

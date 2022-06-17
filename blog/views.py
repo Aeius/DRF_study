@@ -8,15 +8,12 @@ from rest_framework import permissions
 
 class ArticleView(APIView):
     permissions_classes = [permissions.AllowAny]
-
+    
     def get(self, request):
-        print("GET")
         user = request.user
-        print(user)
         articles = Article.objects.filter(author=user)
-        print(articles)
         title_list = []
         for article in articles:
             title_list.append(article.title)
-            
+
         return Response(title_list)
