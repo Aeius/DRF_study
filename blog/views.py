@@ -12,7 +12,7 @@ from DRF_study.permissions import RegistedMoreThan3MinsUser
 
 class ArticleView(APIView):
     # permission_classes = [permissions.AllowAny]
-    # permission_classes = [RegistedMoreThan3MinsUser]
+    permission_classes = [RegistedMoreThan3MinsUser]
     
     def get(self, request):
         articles = Article.objects.filter(start_date__lte=timezone.now(), end_date__gte=timezone.now()).order_by('-start_date')
