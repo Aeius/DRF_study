@@ -10,7 +10,7 @@ from DRF_study.serializers import ArticleSerializer
 # Create your views here.
 
 class UserAPIView(APIView):
-    permissions_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny]
     
     # 요청을 보낼 method의 이름으로 함수명을 지어 오버라이딩 해서 사용해야함
     def get(self, request):
