@@ -1,4 +1,6 @@
+from datetime import timedelta
 from tkinter import CASCADE
+from tracemalloc import start
 from unicodedata import category
 from django.db import models
 from user.models import User
@@ -17,6 +19,8 @@ class Article(models.Model):
     title = models.CharField("제목", max_length=50)
     category = models.ManyToManyField(Category, verbose_name="카테고리")
     content = models.TextField("글내용")
+    start_date = models.DateTimeField("시작날짜", auto_now_add=True)
+    end_date = models.DateTimeField("끝날짜")
     def __str__(self):
         return self.title
 
