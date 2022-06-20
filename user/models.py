@@ -29,7 +29,7 @@ class User(AbstractBaseUser):
     password = models.CharField("비밀번호", max_length=128)
     email = models.EmailField("이메일", max_length=100)
     fullname = models.CharField("이름", max_length=20)
-    join_date = models.DateField("가입일", auto_now_add=True)
+    join_date = models.DateTimeField("가입일", auto_now_add=True)
 
     is_active = models.BooleanField(default=True) # 계정활성화 여부
     is_admin = models.BooleanField(default=False) # 관리자 계정 여부
@@ -66,6 +66,7 @@ class UserProfile(models.Model):
     discription = models.TextField("자기소개", null=True, blank=True)
     hobby = models.ManyToManyField(Hobbies, verbose_name="취미")
     birthday = models.DateField("생일")
+
     def __str__(self):
-        return self.user
+        return self.user.username
 

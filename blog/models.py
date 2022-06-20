@@ -25,4 +25,4 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, verbose_name="게시글", on_delete=models.CASCADE)
     comment = models.TextField("댓글내용")
     def __str__(self):
-        return (f"{self.author} / {self.article} / {self.comment}")
+        return (f"{self.user} / {self.article} / {self.comment}")
