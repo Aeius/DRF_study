@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from user.models import User
 
 from DRF_study.serializers import UserSerializer
+from DRF_study.serializers import ArticleSerializer
 
 # Create your views here.
 
