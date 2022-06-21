@@ -1,7 +1,3 @@
-from datetime import timedelta
-from tkinter import CASCADE
-from tracemalloc import start
-from unicodedata import category
 from django.db import models
 from user.models import User
 
