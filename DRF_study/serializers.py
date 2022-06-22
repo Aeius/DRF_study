@@ -8,15 +8,23 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ["user", "article", "comment"]
 
 class ArticleSerializer(serializers.ModelSerializer):
-    comment = CommentSerializer(many=True, source="comment_set")
+    comment = CommentSerializer(many=True, read_only=True, source="comment_set")
     class Meta:
         model = Article
         fields = ["user", "title", "category", "content", "comment"]
 
 class HobbySerializer(serializers.ModelSerializer):
+    same_hobby_users = serializers.SerializerMethodField()
+    def get_same_hobby_users(self, obj):
+        user_list = []
+        for user_profile in obj.userprofile_set.all():
+            user_list.append(user_profile.user.username)
+
+        return user_list
+
     class Meta:
         model = Hobbies
-        fields = ["name"]
+        fields = ["name", "same_hobby_users"]
 
 class UserProfileSerializer(serializers.ModelSerializer):
     hobby = HobbySerializer(many=True)

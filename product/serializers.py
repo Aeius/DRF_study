@@ -1,19 +1,25 @@
+from django.db import IntegrityError
 from rest_framework import serializers
 
-from product.models import Product
-from DRF_study.serializers import UserSerializer
+from product.models import Product as ProductModel
 
-class ProductSerializer(serializers.ModellSerializer):
+class ProductInfoSerializer(serializers.ModelSerializer):
+    author = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='username'
+    )
+
     class Meta:
-        model = Product
-        fields = "__all__"
-        extra_kwargs = [
-        "user": {'write_only': True}
-        "title": {
-            'error_messages': {
-                'required' : "에러 메세지",
-                'invalid' : "알맞은 형식의 이메일을 입력해주세요"
-            },
-            'required' : True
-        }
-        ]
+        model = ProductModel
+        fields = ["author", "title", "thumnail",
+                  "discription", "add_date", 
+                  "exposure_start_date", "exposure_end_date", ]
+
+
+class ProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductModel
+        fields = ["author", "title", "thumnail",
+                  "discription", "add_date", 
+                  "exposure_start_date", "exposure_end_date", ]

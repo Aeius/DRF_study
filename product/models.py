@@ -9,8 +9,8 @@ from user.models import User as UserModel
 class Product(models.Model):
     author = models.ForeignKey(UserModel, verbose_name="작성자", on_delete=models.CASCADE)
     title = models.CharField("제목", max_length=50, blank=False, null=False)
-    thumnail = models.ImageField("이미지")
+    thumnail = models.FileField("이미지", upload_to="product/")
     discription = models.TextField("설명")
     add_date = models.DateTimeField("등록일자", auto_now_add=True)
-    exposure_start_date = models.DateTimeField("시작일자", auto_now=True)
-    exposure_end_date = models.DateTimeField("끝일자", default=exposure_start_date + timedelta(days=7))
+    exposure_start_date = models.DateTimeField("시작일자")
+    exposure_end_date = models.DateTimeField("끝일자")
