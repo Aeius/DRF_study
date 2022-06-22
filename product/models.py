@@ -1,3 +1,4 @@
+from datetime import timedelta
 from operator import mod
 from statistics import mode
 from django.db import models
@@ -11,5 +12,5 @@ class Product(models.Model):
     thumnail = models.ImageField("이미지")
     discription = models.TextField("설명")
     add_date = models.DateTimeField("등록일자", auto_now_add=True)
-    exposure_start_date = models.DateTimeField("시작일자")
-    exposure_end_date = models.DateTimeField("끝일자")
+    exposure_start_date = models.DateTimeField("시작일자", auto_now=True)
+    exposure_end_date = models.DateTimeField("끝일자", default=exposure_start_date + timedelta(days=7))
