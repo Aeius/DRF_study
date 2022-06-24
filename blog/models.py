@@ -1,3 +1,5 @@
+from datetime import timedelta
+from datetime import datetime
 from django.db import models
 from user.models import User
 
@@ -16,7 +18,7 @@ class Article(models.Model):
     category = models.ManyToManyField(Category, verbose_name="카테고리")
     content = models.TextField("글내용")
     start_date = models.DateTimeField("시작날짜", auto_now_add=True)
-    end_date = models.DateTimeField("끝날짜")
+    end_date = models.DateTimeField("끝날짜", default=datetime.now() + timedelta(days=7) )
     def __str__(self):
         return self.title
 
