@@ -1,5 +1,3 @@
-from curses import noecho
-from turtle import window_height
 from django.db import models
 from user.models import User as UserModel
 
